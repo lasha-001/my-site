@@ -50,7 +50,7 @@ export default function Home() {
   const t = T[lang];
 
   return (
-    <main className="min-h-screen bg-[#0f1a2b] text-white">
+    <main className="min-h-screen bg-gradient-to-b from-[#1b2a44] via-[#0f1a2b] to-[#070d17] text-white">
       <header className="sticky top-0 z-10 bg-[#0f1a2b]/95 backdrop-blur border-b border-white/10">
         <div className="mx-auto max-w-5xl flex items-center justify-between px-4 py-3">
           <div className="flex items-center gap-2 text-xl font-bold">
@@ -86,7 +86,7 @@ export default function Home() {
         )}
       </header>
 
-      <section className="mx-auto max-w-5xl px-4 pt-8 pb-10">
+      <section className="mx-auto max-w-5xl px-4 pt-8 pb-10"><img src="/hero.jpg" alt="AI HOME" className="mb-6 h-72 sm:h-[32rem] w-full rounded-2xl object-cover" />
         <p className="text-sm text-white/60">{t.tag}</p>
         <h1 className="mt-4 text-4xl sm:text-6xl font-bold leading-tight">{t.h1}</h1>
         <p className="mt-4 text-lg text-white/70 max-w-xl">{t.p}</p>
