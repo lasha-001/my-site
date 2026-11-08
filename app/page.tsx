@@ -86,7 +86,7 @@ export default function Home() {
         )}
       </header>
 
-      <section className="mx-auto max-w-5xl px-4 pt-8 pb-10"><img src="/hero.jpg" alt="AI HOME" className="mb-6 h-72 sm:h-[32rem] w-full rounded-2xl object-cover" />
+      <section className="mx-auto max-w-5xl px-4 pt-8 pb-10"><img src="/hero.jpg" alt="AI HOME" className="mb-6 h-72 sm:h-[32rem] w-full rounded-2xl object-cover" /><img src="/hero.jpg" alt="AI HOME" className="mb-6 h-72 sm:h-[32rem] w-full rounded-2xl object-cover" />
         <p className="text-sm text-white/60">{t.tag}</p>
         <h1 className="mt-4 text-4xl sm:text-6xl font-bold leading-tight">{t.h1}</h1>
         <p className="mt-4 text-lg text-white/70 max-w-xl">{t.p}</p>
