@@ -1,69 +1,112 @@
-import Image from "next/image";
+"use client";
+import { useState } from "react";
+
+const PHONE = "+995000000000";
+
+const T = {
+  ka: {
+    menu: ["ელექტროობა", "Smart Home", "მაღაზია"],
+    tag: "ელექტროობა • ავტომატიზაცია • ჭკვიანი სახლი",
+    h1: "შენი სახლი. შენი კონტროლი.",
+    p: "ელექტროგაყვანილობა, ელექტროფარები და ჭკვიანი სახლის სისტემები — დაგეგმვიდან მონტაჟამდე.",
+    cta: "მოითხოვე კონსულტაცია",
+    cards: [
+      ["⚡", "ელექტრომონტაჟი", "გაყვანილობა, ფარები, დაპროექტება"],
+      ["🏠", "ჭკვიანი სახლი", "ავტომატიზაცია, სენსორები, დისტანციური კონტროლი"],
+      ["🛍️", "მაღაზია / პროდუქტები", "შეკვეთით ჩამოსატანი ან ადგილზე არსებული ჭკვიანი მოწყობილობები"],
+    ],
+  },
+  en: {
+    menu: ["Electrical", "Smart Home", "Shop"],
+    tag: "Electrical • Automation • Smart Home",
+    h1: "Your home. Your control.",
+    p: "Electrical wiring, distribution boards and smart home systems — from planning to installation.",
+    cta: "Request a consultation",
+    cards: [
+      ["⚡", "Electrical installation", "Wiring, panels, project design"],
+      ["🏠", "Smart Home", "Automation, sensors, remote control"],
+      ["🛍️", "Shop / Products", "Smart devices in stock or ordered on request"],
+    ],
+  },
+  ru: {
+    menu: ["Электрика", "Умный дом", "Магазин"],
+    tag: "Электрика • Автоматизация • Умный дом",
+    h1: "Ваш дом. Ваш контроль.",
+    p: "Электропроводка, электрощиты и системы умного дома — от проектирования до монтажа.",
+    cta: "Заказать консультацию",
+    cards: [
+      ["⚡", "Электромонтаж", "Проводка, щиты, проектирование"],
+      ["🏠", "Умный дом", "Автоматизация, датчики, удалённое управление"],
+      ["🛍️", "Магазин / Товары", "Устройства в наличии или под заказ"],
+    ],
+  },
+};
+
+type Lang = keyof typeof T;
 
 export default function Home() {
+  const [lang, setLang] = useState<Lang>("ka");
+  const [open, setOpen] = useState(false);
+  const t = T[lang];
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <main className="min-h-screen bg-[#0f1a2b] text-white">
+      <header className="sticky top-0 z-10 bg-[#0f1a2b]/95 backdrop-blur border-b border-white/10">
+        <div className="mx-auto max-w-5xl flex items-center justify-between px-4 py-3">
+          <div className="flex items-center gap-2 text-xl font-bold">
+            <span className="text-yellow-400">⚡</span> AI HOME
+          </div>
+          <div className="flex items-center gap-3">
+            <div className="flex gap-1 text-xs">
+              {(["ka", "en", "ru"] as Lang[]).map((l) => (
+                <button
+                  key={l}
+                  onClick={() => setLang(l)}
+                  className={`px-2 py-1 rounded ${
+                    lang === l ? "bg-yellow-400 text-black" : "bg-white/10"
+                  }`}
+                >
+                  {l === "ka" ? "GE" : l.toUpperCase()}
+                </button>
+              ))}
+            </div>
+            <button onClick={() => setOpen(!open)} className="text-2xl" aria-label="menu">
+              ☰
+            </button>
+          </div>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+        {open && (
+          <nav className="mx-auto max-w-5xl px-4 pb-3 flex flex-col gap-2">
+            {t.menu.map((m, i) => (
+              <a key={i} href={`#c${i}`} onClick={() => setOpen(false)} className="py-1 text-white/80">
+                {m}
+              </a>
+            ))}
+          </nav>
+        )}
+      </header>
+
+      <section className="mx-auto max-w-5xl px-4 pt-8 pb-10">
+        <p className="text-sm text-white/60">{t.tag}</p>
+        <h1 className="mt-4 text-4xl sm:text-6xl font-bold leading-tight">{t.h1}</h1>
+        <p className="mt-4 text-lg text-white/70 max-w-xl">{t.p}</p>
+        <a
+          href={`tel:${PHONE}`}
+          className="mt-6 block sm:inline-block text-center rounded-xl bg-yellow-400 px-6 py-4 font-semibold text-black"
+        >
+          {t.cta}
+        </a>
+      </section>
+
+      <section className="mx-auto max-w-5xl px-4 pb-16 grid gap-4 sm:grid-cols-3">
+        {t.cards.map((c, i) => (
+          <div key={i} id={`c${i}`} className="rounded-2xl bg-white/5 p-5 border border-white/10">
+            <div className="text-3xl">{c[0]}</div>
+            <h2 className="mt-3 text-xl font-semibold">{c[1]}</h2>
+            <p className="mt-2 text-white/70">{c[2]}</p>
+          </div>
+        ))}
+      </section>
+    </main>
   );
 }
